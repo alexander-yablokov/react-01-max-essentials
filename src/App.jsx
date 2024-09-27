@@ -1,13 +1,17 @@
+import {useState} from "react";
 import Header from './components/Header/Header';
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
 import {CORE_CONCEPTS} from "./data";
 
-function handleClick(selectButton) {
-    console.log(selectButton)
-}
-
 function App() {
+    const [selectedTopic, setSelectedTopic] = useState('Please click a button');
+
+    // функция-обработчик должна быть внутри компонента
+    function handleClick(selectButton) {
+        setSelectedTopic(selectButton);
+    }
+
     return (
         <div>
             <Header/>
@@ -39,6 +43,7 @@ function App() {
                         <TabButton onClick={() => handleClick('props')}>Props</TabButton>
                         <TabButton onClick={() => handleClick('state')}>State</TabButton>
                     </menu>
+                    {selectedTopic}
                 </section>
             </main>
         </div>
